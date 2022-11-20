@@ -6,12 +6,14 @@
 <body>
     <h4>Exemplo CRUD utilizando a api back-end.</h4>
 
+    <input type="hidden" id="id">
     Nome: <br>
     <input type="text" placeholder="Nome da pessoa" id="nome"><br>
     Email: <br>
     <input type="text" id="email"><br>
-    <input type="button" value="Gravar" onclick="incluir()">
-    <input type="button" value="Limpar" onclick="limpar()">
+    <input type="button" value="Gravar" onclick="gravar()">
+    <input type="button" value="Novo" onclick="limpar()">
+    <input type="button" value="Apagar" onclick="apagar()">
 
     <div id="lista">minha div onde vamos colocar a lista da api</div>
     <script>
@@ -20,6 +22,7 @@
         
         // 01 - criar a variável
         xhttp = new XMLHttpRequest();
+        var lista ;
 
         function listar () {
             // 02 - Definiçõa do nosso request endereço e forma
@@ -35,9 +38,10 @@
                 console.log(lista);
                 
                 texto = "Lista de pessoas: <br>";
-                
+                i = 0;
                 for (const u of lista) {
-                    texto += `${u.nome} - ${u.email} - 🔄 <br>`
+                    texto += `${u.nome} - ${u.email} - <span onclick='editar(${i})'>📝</span> <br>`
+                    i++;
                 }
                 document.getElementById('lista').innerHTML = texto;
             }
@@ -45,13 +49,19 @@
         
         listar();
 
-        function incluir(){
+        function gravar(){
             
             var usuario = {};
             usuario.nome = document.getElementById("nome").value;
             usuario.email = document.getElementById("email").value;
             
-            console.log(usuario);
+            //console.log(usuario);
+            usuario.id = document.getElementById("id").value;
+            if (usuario.id > 0) {
+                metodo = "PUT";
+            } else {
+                metodo = "POST";
+            }
 
             xhttp.open("POST", "http://danvolles-prj-java.herokuapp.com/api/usuario/")
             xhttp.setRequestHeader("Content-Type","application/json;charset=UTF-8")
@@ -66,7 +76,25 @@
         function limpar() {
             document.getElementById("nome").value = "";
             document.getElementById("email").value = "";
-            
+            document.getElementById("id").value = "";
+        }
+
+        function editar(i) {
+            u = lista[i];
+            document.getElementById("nome").value = u.nome;
+            document.getElementById("email").value = u.email;
+            document.getElementById("id").value = u.id;
+        }
+
+        function apagar(){
+            id = document.getElementById("id").value;
+            xhttp.open("DELETE", "http://danvolles-prj-java.herokuapp.com/api/usuario/"+id);
+            xhttp.send();
+            xhttp.onload = function () {
+                alert(this.responseText);
+                listar();
+                limpar();
+            }
         }
 
 
