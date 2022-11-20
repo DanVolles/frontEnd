@@ -4,7 +4,7 @@
 // 01 - criar a variável
 xhttp = new XMLHttpRequest();
 var lista;
-var api = "http://danvolles-prj-java.herokuapp.com/api/usuario/";
+var api = "http://danvolles-prj-java.herokuapp.com/api/produto/";
 
 
 // ---- FUNÇÃO LISTAR
@@ -27,7 +27,8 @@ var api = "http://danvolles-prj-java.herokuapp.com/api/usuario/";
                     texto += `
                     <tr onclick='editar(${i})'>
                         <td>${u.nome}</td>
-                        <td>${u.email}</td>
+                        <td>${u.descricao}</td>
+                        <td>${u.valor}</td>
                     </tr>`
                     i++;
                 }
@@ -40,7 +41,8 @@ var api = "http://danvolles-prj-java.herokuapp.com/api/usuario/";
         function editar(i) {
             u = lista[i];
             document.getElementById("nome").value = u.nome;
-            document.getElementById("email").value = u.email;
+            document.getElementById("descricao").value = u.descricao;
+            document.getElementById("valor").value = u.valor;
             document.getElementById("id").value = u.id;
         }
 
@@ -48,13 +50,14 @@ var api = "http://danvolles-prj-java.herokuapp.com/api/usuario/";
 // ---- FUNÇÃO GRAVAR
         function gravar(){
             
-            var usuario = {};
-            usuario.nome = document.getElementById("nome").value;
-            usuario.email = document.getElementById("email").value;
+            var produto = {};
+            produto.nome = document.getElementById("nome").value;
+            produto.descricao = document.getElementById("descricao").value;
+            produto.valor = document.getElementById("valor").value;
             
-            //console.log(usuario);
-            usuario.id = document.getElementById("id").value;
-            if (usuario.id > 0) {
+            //console.log(produto);
+            produto.id = document.getElementById("id").value;
+            if (produto.id > 0) {
                 metodo = "PUT"; // ATUALIZAR
             } else {
                 metodo = "POST"; // INCLUR
@@ -63,7 +66,7 @@ var api = "http://danvolles-prj-java.herokuapp.com/api/usuario/";
             xhttp.open("POST", api)
             xhttp.setRequestHeader("Content-Type","application/json;charset=UTF-8")
 
-            xhttp.send(JSON.stringify(usuario));
+            xhttp.send(JSON.stringify(produto));
             xhttp.onload = function(){
                 console.log(this.responseText);
                 listar();
@@ -75,7 +78,8 @@ var api = "http://danvolles-prj-java.herokuapp.com/api/usuario/";
 // ---- FUNÇÃO LIMPAR
         function limpar() {
             document.getElementById("nome").value = "";
-            document.getElementById("email").value = "";
+            document.getElementById("descricao").value = "";
+            document.getElementById("valor").value = "";
             document.getElementById("id").value = "";
         }
 
