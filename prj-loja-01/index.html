@@ -16,7 +16,7 @@
         }
 
         #banner {
-            background-color: black;
+            background-color: #37363D;
             padding: 30px 300px 30px 300px;
             width: 100%;
             position: fixed;
@@ -30,12 +30,17 @@
         }
 
         #banner h1 {
-            color: aqua;
+            color: white;
         }
 
         #container {
             display: grid;
             place-items: center;
+        }
+
+        .reference {
+            text-align: center;
+            padding-top: 40px;
         }
 
         .ls-produto {
@@ -54,7 +59,7 @@
         }
 
         .produto-selecionado {
-            border-color: aqua;
+            border-color: palevioletred;
         }
 
         .produto img {
@@ -63,8 +68,8 @@
         }
 
         .produto .nome {
-            background-color: black;
-            color: aqua;
+            background-color: #37363D;
+            color: white;
             height: 15%;
             display: flex;
             justify-content: center;
@@ -80,14 +85,14 @@
 
         #bt-fixo,
         #bt-fixo span {
-            background-color: aqua;
+            background-color: #37363D;
             width: 90px;
             height: 90px;
             display: flex;
             justify-content: center;
             align-items: center;
             border-radius: 50%;
-            border: solid black 3px;
+            border: solid #37363D 2px;
             position: fixed;
             bottom: 30px;
             right: 30px;
@@ -98,7 +103,7 @@
             height: 20px;
             bottom: 95px;
             background-color: black;
-            color: aqua;
+            color: white;
         }
 
         @media (max-width: 700px) {
@@ -111,39 +116,43 @@
             }
         }
     </style>
+
+    <!-- Black thing on the top -->
     <div id="banner">
-        <img src="marca.png" alt="">
+        <img src="img/marca.png" alt="">
         <h1>Nome da Loja</h1>
     </div>
+
+    
     <div id="container">
         <div class="ls-produto">
             <div class="produto" onclick="addCarrinho(this)">
-                <img src="produto.png" alt="">
+                <img src="img/produto.png" alt="">
                 <p class="nome">Nome do Produto</p>
                 <p class="valor">R$ 100,00</p>
             </div>
-            <div class="produto">
-                <img src="produto2.png" onclick="addCarrinho(this)">
+            <div class="produto" onclick="addCarrinho(this)">
+                <img src="img/produto2.png">
                 <p class="nome">Nome do Produto</p>
                 <p class="valor">R$ 100,00</p>
             </div>
-            <div class="produto">
-                <img src="produto.png" onclick="addCarrinho(this)">
+            <div class="produto" onclick="addCarrinho(this)">
+                <img src="img/produto.png">
                 <p class="nome">Nome do Produto</p>
                 <p class="valor">R$ 100,00</p>
             </div>
-            <div class="produto">
-                <img src="produto2.png" onclick="addCarrinho(this)">
+            <div class="produto" onclick="addCarrinho(this)">
+                <img src="img/produto2.png">
                 <p class="nome">Nome do Produto</p>
                 <p class="valor">R$ 100,00</p>
             </div>
-            <div class="produto">
-                <img src="produto.png" onclick="addCarrinho(this)">
+            <div class="produto" onclick="addCarrinho(this)">
+                <img src="img/produto.png">
                 <p class="nome">Nome do Produto</p>
                 <p class="valor">R$ 100,00</p>
             </div>
-            <div class="produto">
-                <img src="produto2.png" onclick="addCarrinho(this)">
+            <div class="produto" onclick="addCarrinho(this)">
+                <img src="img/produto2.png">
                 <p class="nome">Nome do Produto</p>
                 <p class="valor">R$ 100,00</p>
             </div>
@@ -153,6 +162,7 @@
             <span id="qt-produto">0</span>
         </div>
     </div>
+
     <script>
         function addCarrinho(elemento) {
             if (elemento.classList.length == 2) {
@@ -162,11 +172,12 @@
                 document.getElementById("qt-produto").innerHTML = 1;
                 elemento.classList.add("produto-selecionado");
             }
-
         }
         </script>
 
+    <div class="reference">
         <a href="https://www.flaticon.com/" title="box icons">Icons created by Freepik - Flaticon</a>
+    </div>
 
 </body>
 
