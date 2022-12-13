@@ -119,7 +119,7 @@
 
     <!-- Black thing on the top -->
     <div id="banner">
-        <img src="img/marca.png" alt="">
+        <!-- <img src="img/marca.png" alt=""> -->
         <h1>Nome da Loja</h1>
     </div>
 
@@ -127,32 +127,32 @@
     <div id="container">
         <div class="ls-produto">
             <div class="produto" onclick="addCarrinho(this)">
-                <img src="img/produto.png" alt="">
+                <!-- <img src="img/produto.png" alt=""> --> 
                 <p class="nome">Nome do Produto</p>
                 <p class="valor">R$ 100,00</p>
             </div>
             <div class="produto" onclick="addCarrinho(this)">
-                <img src="img/produto2.png">
+                <!-- <img src="img/produto2.png"> -->
                 <p class="nome">Nome do Produto</p>
                 <p class="valor">R$ 100,00</p>
             </div>
             <div class="produto" onclick="addCarrinho(this)">
-                <img src="img/produto.png">
+                <!-- <img src="img/produto.png"> -->
                 <p class="nome">Nome do Produto</p>
                 <p class="valor">R$ 100,00</p>
             </div>
             <div class="produto" onclick="addCarrinho(this)">
-                <img src="img/produto2.png">
+                <!-- <img src="img/produto2.png"> -->
                 <p class="nome">Nome do Produto</p>
                 <p class="valor">R$ 100,00</p>
             </div>
             <div class="produto" onclick="addCarrinho(this)">
-                <img src="img/produto.png">
+                <!-- <img src="img/produto.png"> -->
                 <p class="nome">Nome do Produto</p>
                 <p class="valor">R$ 100,00</p>
             </div>
             <div class="produto" onclick="addCarrinho(this)">
-                <img src="img/produto2.png">
+                <!-- <img src="img/produto2.png"> -->
                 <p class="nome">Nome do Produto</p>
                 <p class="valor">R$ 100,00</p>
             </div>
@@ -173,6 +173,22 @@
                 elemento.classList.add("produto-selecionado");
             }
         }
+
+        xhttp = new XMLHttpRequest();
+
+        function buscarProduto() {
+            xhttp.open("GET","https://danvolles.github.io/frontEnd/tree/master/fake-api/produto.js");
+            xhttp.send();
+            xhttp.onload = function () {
+                console.log(this.responseText);
+                // lsProduto = this.responseText;
+                // lsProduto = JSON.parse(lsProduto);
+                // clonarProdutos(lsProduto);
+            }
+        }
+
+        buscarProduto();
+
         </script>
 
     <div class="reference">
